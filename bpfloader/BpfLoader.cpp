@@ -112,6 +112,8 @@ void createSysFsBpfSubDir(const char* const prefix) {
 }
 
 int main() {
+    if (!android::bpf::isBpfSupported()) return 0;
+
     // Load all ELF objects, create programs and maps, and pin them
     for (const auto location : locations) {
         createSysFsBpfSubDir(location.prefix);
